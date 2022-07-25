@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+
+    <title>Create</title>
+</head>
+<body class="bg-light">
+    <div class="mx-auto col-6">
+
+        <div class="d-flex justify-content-evenly">
+            <div class="p-3 w-75">
+                <h1 class="text-center">Add a New Recipe!</h1>
+            </div>
+            <div class="d-flex p-3 w-25 inline-block">
+                <div class="p-2">
+                    <a href="/dashbaord" class="link-dark">Back to Recipes</a>
+
+                </div>
+
+                <div class="p-2">
+                    <a href="/logout" class="link-dark">Logout</a>
+                </div>
+                
+    
+            </div>
+        </div>
+    </div>
+    <div class=" mx-auto col-6 ">
+        <div class="text-danger">
+            {% with messages = get_flashed_messages(category_filter=['create']) %}     
+                {% if messages %}                            
+                    {% for message in messages %}            
+                        <p>{{message}}</p>                   
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <form action="/recipe/create" method="POST" class="d-flex justify-content-evenly">
+            <input name="user_id" type="hidden" value="{{session['user_id']}}">
+            <div class="w-75 p-3">
+                <div class="form-floating">
+                    <input name="name" type="text" class="form-control" id="name">
+                    <label for="name">Name</label>
+                </div>
+                <br>
+                <div class="form-floating">
+                    <textarea class="form-control" name="description" id="description" style="height: 100px"></textarea>
+                    <label for="description">Description</label>
+                </div>
+                <br>
+                <div class="form-floating">
+                    
+                    <textarea class="form-control" name="instructions" id="instructions" style="height: 175px"></textarea>
+                    <label for="instructions">Instructions</label>
+                </div>
+            </div>
+            <div class="w-50 p-3 ">
+                <div class="form-group">
+                    <label for="date_cooked" class="form-label">Date Cooked/ Made</label>
+                    <input type="date" class="form-control" name="date_cooked" id="date_cooked">
+                </div>
+                <br>
+                <div class="form-floating ">
+                    <select name="under" class="form-select" id="under" aria-label="Floating label select example">
+                        <option selected>Please Select</option>
+                        <option value="1">Yes</option>
+                        <option value="2">No</option>
+                    </select>
+                    <label for="under">Under 30 Minutes?</label>
+                </div>
+                <br>
+                <div class="d-grid gap-2">
+                    <input class="btn btn-outline-secondary" type="submit" value="Submit">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <title>Show Recipe</title>
+</head>
+<body class="bg-light">
+    <div class="mx-auto col-7">
+        <div class="d-flex justify-content-evenly">
+            <div class="p-3 w-75">
+                <h1 class="text-center">Welcome {{recipe.user.first_name}}</h1>
+            </div>
+            <div class="d-flex p-2 w-25 inline-block">
+                <div class="p-2">
+                    <a href="/dashbaord" class="link-dark">Back to Recipes</a>
+                </div>
+                <div class="p-2">
+                    <a href="/logout" class="link-dark">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h2 class="p-3">{{recipe.name}}</h2>
+                <h4 class="p-3" >Posted by: {{recipe.user.first_name}}</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-evenly">
+                    <p class="p-2 card-text w-25">Description:</p>
+                    <p class="p-2 card-text w-75">{{recipe.description}}</p>
+                </div>
+                <div class="d-flex justify-content-evenly">
+                    <p class="p-2 card-text w-25">Under 30 Minutes?</p>
+                    <p class="p-2 card-text w-75">
+                        {% if recipe.under == True: %}
+                            Yes
+                        {% else: %}
+                            No
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="d-flex justify-content-evenly">
+                    <p class="p-2 card-text w-25">Instructions:</p>
+                    <p class="p-2 card-text w-75">{{recipe.instructions}}</p>
+                </div>
+                <div class="d-flex justify-content-evenly">
+                    <p class="p-2 card-text w-25">Date Made:</p>
+                    <p class="p-2 card-text w-75">{{recipe.date_cooked}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+</html>
